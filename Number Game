@@ -1,0 +1,56 @@
+import java.util.*;
+
+public class NumberGame {
+
+    //generates a random number between 1 and 100.
+    public static int random(int min,int max){
+        return (int)(Math.random()*(max-min+1)+min);
+    }
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Hello, Welcome to the Number Game!");
+
+        int score = 0 ;
+        
+        boolean play = true;
+        while (play) {
+            int r = random(1, 100); //call for random number generation method.
+            int ans;
+            boolean guess = false;
+            System.out.println("Guess a number between 1 and 100");
+
+            for (int i = 5; i > 0; i--) {
+                System.out.println("Hey Player! You have only  " + i + "  chances to play");
+
+                  ans = sc.nextInt(); //taking input from user.
+
+                  //evaluating based on user's input
+                if(ans == r){
+                  System.out.println("Yess!! You Guessed it right");
+                  guess = true;
+                  score += 10;
+                     break;
+                 }else if (ans > r) {
+                    System.out.println("Too high");
+                 }else{
+                    System.out.println("too Low");
+                 }
+            }
+            
+            if(!guess){
+                System.out.println("Ohh No! You lost the Game." + " The number was " + r);
+            }
+
+            
+            System.out.println("Want to play again? (y/n)");
+            String pa = sc.next();  //asking user to play or not.
+            play = pa.equalsIgnoreCase("y");
+        }
+        
+    System.out.println("Your Final Score is : " + score);
+       
+    sc.close();
+    }
+}
