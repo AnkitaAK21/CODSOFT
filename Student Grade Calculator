@@ -1,0 +1,54 @@
+import java.util.*;
+public class StudentGradeCalculator {
+
+    public static double percentage(int total,int n){
+        double pcnt = (double)total/n;
+        return pcnt;
+    }
+    
+    public static char grade(double percent){
+        if (percent >= 90.00 && percent <= 100.00) {
+            return 'S';
+        }else if(percent >= 80.00 && percent < 90.00){
+            return 'A';
+        }else if(percent >= 70.00 && percent < 80.00){
+            return 'B';
+        }else if(percent >= 60.00 && percent < 70.00){
+            return 'C';
+        }else if(percent >= 50.00 && percent < 60.00){
+            return 'D';
+        }else if(percent >= 40.00 && percent < 50.00){
+            return 'E';
+        }else {
+            return 'F';
+        }
+    }
+    public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("STUDENT GRADE CALCULATOR");
+        System.out.println("Enter the number of subjects");
+        int num_of_sub = sc.nextInt();
+
+        int total=0;
+       
+        
+        for (int i = 0; i < num_of_sub; i++) {
+            System.out.println("Enter the marks of subject " +  (i+1) + " : (Maximum marks 100)");
+            int marks = sc.nextInt();
+            if(marks > 100 || marks < 0){
+                System.out.println("Entered marks is inappropriate. Please enter appropriate marks once more for subject " + (i+1));
+                marks = sc.nextInt();
+            }
+            total += marks;
+        }
+
+        System.out.println("Total Marks Scored is: " + total);
+
+        double percent = percentage(total, num_of_sub);
+        System.out.println("Average Percentage is: " + String.format("%.2f",percent));
+
+        System.out.println("Grade is :" + grade(percent));
+
+    }
+}
